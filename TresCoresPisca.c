@@ -2,6 +2,7 @@ void setup() {
   // put your setup code here, to run once:
 //Projeto arduino Andrew e Regis
 pinMode(10, OUTPUT);
+  //andrew
 //Verde
 pinMode(5, OUTPUT);
 //Azul
