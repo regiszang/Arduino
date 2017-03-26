@@ -1,3 +1,5 @@
+
+// add library to project
 #include <OneWire.h>
 #include <DallasTemperature.h>
 #include <Wire.h>  //Vem no Arduino já
@@ -5,12 +7,14 @@
 //Deixarei o texto "(Pode comentar LCD + I2C)" caso não esteja usando LCD e I2C
 //#include <LiquidCrystal_I2C.h>
 //Biblioteca do Cristal Liquido
- 
- 
+
+//Inicial Variable
+//Input Variable
 //variavel do pino que esta plugado o Sensor
 //Neste caso é o pino 2, mais pode usar qualquer pino digital
 #define ONE_WIRE_BUS 2
- 
+//Output Variable
+
  
 //Instacia o Objeto oneWire e Seta o pino do Sensor para iniciar as leituras
 OneWire oneWire(ONE_WIRE_BUS);
