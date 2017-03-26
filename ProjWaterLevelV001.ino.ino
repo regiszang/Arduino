@@ -1,22 +1,26 @@
+//Inicial Variable
+//Input Variable
 int pinAgua = 11;
-//int pinBuzzer = 12;
+//Output Variable
+//int pinBuzzer = 10;
 int pinLedVerm = 12;
 int pinLedVerd = 6;
 
 void setup(){
-  //pinAgua
+  //Setup input data from pinAgua to arduino
   pinMode(pinAgua,INPUT);
-//  pinMode(pinBuzzer,OUTPUT);
+  // pinMode(pinBuzzer,OUTPUT);
 
-//  pinBuzzer
-//  pinMode(12,OUTPUT);
+  //Setup Output data to 
+  //pinBuzzer
+  //pinMode(12,OUTPUT);
 
-    pinMode(pinLedVerd, OUTPUT);
-    //Verde
-    pinMode(pinLedVerm , OUTPUT);
-    //Vermelho
+  pinMode(pinLedVerd, OUTPUT);
+  //Verde
+  pinMode(pinLedVerm , OUTPUT);
+  //Vermelho
 
- Serial.begin(9600);
+  Serial.begin(9600);
   Serial.println("Teste Nivel Fixo");
   Serial.println("Regis e Andrew");
     
@@ -34,10 +38,10 @@ void loop(){
 
    
   }else{
-    //digitalWrite(pinBuzzer,HIGH);
-   Serial.println("Pin Agua High"); 
-   digitalWrite(pinLedVerm,LOW);
-   digitalWrite(pinLedVerd,HIGH);
-   delay(500);
+  //digitalWrite(pinBuzzer,HIGH);
+  Serial.println("Pin Agua High"); 
+  digitalWrite(pinLedVerm,LOW);
+  digitalWrite(pinLedVerd,HIGH);
+  delay(500);
   }
 }
