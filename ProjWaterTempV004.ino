@@ -1,3 +1,4 @@
+#include "pitches.h"  //add note library
 #include <OneWire.h>
 #include <DallasTemperature.h>
 #include <Wire.h>  //Vem no Arduino já
@@ -5,7 +6,25 @@
 //Deixarei o texto "(Pode comentar LCD + I2C)" caso não esteja usando LCD e I2C
 //#include <LiquidCrystal_I2C.h>
 //Biblioteca do Cristal Liquido
- 
+
+//---->notes in the melody
+//Alerta Vermelho
+int melody1[]={NOTE_CS3, NOTE_DS1, NOTE_E5, NOTE_D6,NOTE_DS1, NOTE_AS4, NOTE_DS1, NOTE_D6}; 
+//---->note durations. 4=quarter note / 8=eighth note
+//int noteDurations1[]={4, 4, 4, 4, 8, 8, 8, 8};
+int noteDurations1[]={2, 2, 2, 2, 2, 2, 2, 2};
+
+
+//Alerta Azul
+//int melody2[]={NOTE_CS3, NOTE_AS4, NOTE_E5, NOTE_D6,NOTE_CS3, NOTE_AS4, NOTE_E5, NOTE_D6};
+int melody2[]={NOTE_D4, NOTE_E4, NOTE_F4, NOTE_G4,NOTE_G4, NOTE_G4, NOTE_D4, NOTE_E4};
+//---->note durations. 4=quarter note / 8=eighth note
+int noteDurations2[]={1, 1, 1, 1, 1, 1, 1, 1};
+
+//---->digital pin 12 has a button attached to it. Give it an name
+////int buttonPin= 12;
+/////tem que fazer
+
  
 //variavel do pino que esta plugado o Sensor
 //Neste caso é o pino 2, mais pode usar qualquer pino digital
@@ -24,6 +43,10 @@ DallasTemperature sensor(&oneWire);
  
 void setup(void)
 {
+    
+  ////----->make the button's pin input
+  ////pinMode(buttonPin, INPUT);
+  
   //Inicia a Serial
   Serial.begin(9600);
   Serial.println("Sensor de temperatura Dallas DS18b20");
@@ -61,6 +84,30 @@ pinMode(10, OUTPUT);
  
 void loop(void)
 {
+    //----->read the input pin
+  ////int buttonState = digitalRead(buttonPin);
+
+  //------>if the button is pressed
+  ////if (buttonState == 1){
+
+    //------->iterate over the notes of the melody
+    ////for (int thisNote=0; thisNote <8; thisNote++){
+
+      //------>to calculate the note duration, take one second. Divided by the note type
+     //// int noteDuration = 1000 / noteDurations1   [thisNote];
+     //// tone(8, melody1 [thisNote], noteDuration);
+
+      //----->to distinguish the notes, set a minimum time between them
+      //----->the note's duration +30% seems to work well
+    ////  int pauseBetweenNotes = noteDuration * 1.30;
+     //// delay(pauseBetweenNotes);
+
+      //----->stop the tone playing
+    ////  noTone(8);
+    ///}
+  //}
+  
+  
   //Envia o comando para obter temperaturas
   sensor.requestTemperatures();
    //inicia Parametro Min Temperatura
@@ -75,6 +122,24 @@ void loop(void)
       ////
   if (leitura < vtemp_min) 
   {
+//xx Musica Azul
+    //------->iterate over the notes of the melody
+    for (int thisNote=0; thisNote <8; thisNote++){
+
+      //------>to calculate the note duration, take one second. Divided by the note type
+      int noteDuration = 1000 / noteDurations1 [thisNote];
+      tone(8, melody1 [thisNote], noteDuration);
+
+      //----->to distinguish the notes, set a minimum time between them
+      //----->the note's duration +30% seems to work well
+      int pauseBetweenNotes = noteDuration * 1.30;
+      delay(pauseBetweenNotes);
+
+      //----->stop the tone playing
+      noTone(8);
+    }
+//xx    
+    
     //Acende Azul
   Serial.println("Menor de 15");
    digitalWrite(10,HIGH);
@@ -84,6 +149,24 @@ void loop(void)
   }
   else if (leitura > vtemp_max)
   {
+//xx Musica Vermelha
+    //------->iterate over the notes of the melody
+    for (int thisNote=0; thisNote <8; thisNote++){
+
+      //------>to calculate the note duration, take one second. Divided by the note type
+      int noteDuration = 1000 / noteDurations2 [thisNote];
+      tone(8, melody2 [thisNote], noteDuration);
+
+      //----->to distinguish the notes, set a minimum time between them
+      //----->the note's duration +30% seems to work well
+      int pauseBetweenNotes = noteDuration * 1.30;
+      delay(pauseBetweenNotes);
+
+      //----->stop the tone playing
+      noTone(8);
+    }
+//xx     
+    
     //Acende o Vermelho
   Serial.println("Maior de 22");
    digitalWrite(6,HIGH);
